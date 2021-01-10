@@ -4,3 +4,13 @@ services:
     build: ./infra/php
     volumes:
       - ./backend:/work
+
+    # 追記
+  web:
+    image: nginx:1.18-alpine
+    ports:
+      - 10080:80
+    volumes:
+      - ./backend:/work
+      - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    working_dir: /work
