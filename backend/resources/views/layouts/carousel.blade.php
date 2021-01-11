@@ -93,7 +93,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="#">編集</a>
               <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">お問い合わせ</a>
+              <a class="dropdown-item" href="{{route('contact.index')}}">お問い合わせ</a>
             </div>
           </li>
           <!-- Authentication Links -->

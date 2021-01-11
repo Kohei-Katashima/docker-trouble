@@ -10,8 +10,9 @@
       </small>
 
     </div>
-    <form class="form-inline mt-2 mt-md-0 ml-5">
-      <input class="form-control mr-sm-2" type="text" placeholder="朝起きられない" aria-label="Search">
+    <form class="form-inline mt-2 mt-md-0 ml-5" action="{{ route('posts.search') }}" method="GET">
+      @csrf
+      <input class="form-control mr-sm-2" type="search" placeholder="朝起きられない" aria-label="Search" name="search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
     </form>
     <a href="{{ route('posts.create') }}" class="d-block btn btn-outline-primary my-2 my-sm-0 ml-3">投稿する</a>
