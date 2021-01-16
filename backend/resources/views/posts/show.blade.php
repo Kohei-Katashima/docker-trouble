@@ -30,14 +30,14 @@
       <form method="POST" action="{{ route('posts.destroy', $post->id) }}" id="delete_{{ $post->id }}">
         @csrf
         <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" class="d-block text-righ" value="削除する" data-id="{{ $post->id }}" onclick="deletePost(this);"></input>
+        <input type="button" class="d-block text-righ" value="削除する" data-id="{{ $post->id }}" onclick="deletePost(this);return false;"></input>
       </form>
       @endif
     </div>
     <div class="media text-muted pt-3">
-      @if(isset($post->image))
-      <img src="{{ asset('storage/image/'.$post->image) }}" class="bd-placeholder-img mr-2 rounded" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
-      @elseif(!isset($post->image))
+      @if(isset($user->profile_image))
+      <img src="{{ asset('storage/image/'.$user->profile_image) }}" class="bd-placeholder-img mr-2 rounded" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+      @elseif(!isset($user->profile_image))
       <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
         <title>Placeholder</title>
         <rect width="100%" height="100%" fill="#007bff" /><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
@@ -45,7 +45,9 @@
       @endif
       <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
         <div class="d-flex justify-content-between align-items-center w-100">
+        <a href="{{route('users.show',$post->user_id)}}" class="text-muted">
           <strong class="text-gray-dark">{{ $post->user->name}}</strong>
+          </a>
           @if (Auth::user()->id <> $post->user_id)
             <a href="#">Follow</a>
             @endif
@@ -75,9 +77,9 @@
   <div class="my-3 p-3 bg-white rounded shadow-sm">
     <h6 class="border-bottom border-gray pb-2 mb-0">解決コメント</h6>
     <div class="media text-muted pt-3">
-      @if(isset($post->image))
-      <img src="{{ asset('storage/image/'.$post->image) }}" class="bd-placeholder-img mr-2 rounded" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
-      @elseif(!isset($post->image))
+      @if(isset($user->profile_image))
+      <img src="{{ asset('storage/image/'.$user->profile_image) }}" class="bd-placeholder-img mr-2 rounded" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+      @elseif(!isset($user->profile_image))
       <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
         <title>Placeholder</title>
         <rect width="100%" height="100%" fill="#007bff" /><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
@@ -120,7 +122,9 @@
       </svg>
       <div class="media-body pb-3 mb-0 small lh-125 ">
         <div class="d-flex justify-content-between align-items-center w-100">
+        <a href="{{route('users.show',$comment->user_id)}}" class="text-muted">
           <strong class="text-gray-dark">{{ $comment->user->name }}</strong>
+        </a>
           <a href="#">Follow</a>
         </div>
         <div class="d-flex justify-content-between align-items-center w-100">
@@ -148,7 +152,11 @@
       </svg>
       <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
         <div class="d-flex justify-content-between align-items-center w-100">
-          <strong class="text-gray-dark">{{ $user->name }}</strong>
+        <a href="{{route('users.show',$user->id)}}" class="text-muted">
+          <strong class="text-gray-dark">
+        {{ $user->name }}
+          </strong>
+        </a>
           <a href="#">Follow</a>
         </div>
         <span class="d-block">@username</span>
@@ -165,7 +173,11 @@
       'use strict';
       if (confirm('本当に削除してもよろしいですか？')) {
         document.getElementById('delete_' + e.dataset.id).submit();
+      } else {
+        window.alert('キャンセルされました');
+        return false;
       }
+    
     }
   </script>
 </main>

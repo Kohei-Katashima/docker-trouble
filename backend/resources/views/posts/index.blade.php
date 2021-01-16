@@ -17,6 +17,12 @@
     </form>
     <a href="{{ route('posts.create') }}" class="d-block btn btn-outline-primary my-2 my-sm-0 ml-3">投稿する</a>
   </div>
+  
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    @foreach($tags as $tag)
+    <a href="{{ route('posts.index', ['tag_name' => $tag->tag_name]) }}" class="badge badge-light">{{ $tag->tag_name}}</a>
+    @endforeach
+  </div>
 
   @if (session('err_msg'))
   <p class="text-danger">{{ session('err_msg') }}</p>
@@ -25,6 +31,7 @@
   @isset ($search_result)
   <p class="text-info">{{ $search_result }}</p>
   @endisset
+
 
   <div class="my-3 p-3 bg-white rounded shadow-sm">
     <h6 class="border-bottom border-gray pb-2 mb-0">最近の投稿</h6>
@@ -42,14 +49,14 @@
       <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
         <div class="d-flex justify-content-between align-items-center w-100">
           <a href="{{ route('posts.show',$post->id) }}" class="text-muted">
-          <strong class="d-block text-gray-dark">{{ $post->updated_at}}</strong>
-          <strong class="d-block text-gray-dark">{{ $post->title}}</strong>
-          {!!(e(Str::limit($post['content'], 50)))!!}
-        </a>
-        <a href="#" >{{ $post->user->name }}</a>
-      </div>
+            <strong class="d-block text-gray-dark">{{ $post->updated_at}}</strong>
+            <strong class="d-block text-gray-dark">{{ $post->title}}</strong>
+            {!!(e(Str::limit($post['content'], 50)))!!}
+          </a>
+          <a href="{{route('users.show',$post->user_id)}}">{{ $post->user->name }}</a>
+        </div>
 
-    </div>
+      </div>
 
     </div>
     @endforeach
@@ -75,7 +82,11 @@
       </svg>
       <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
         <div class="d-flex justify-content-between align-items-center w-100">
-          <strong class="text-gray-dark">{{ $user->name }}</strong>
+          <a href="{{route('users.show',$user->id)}}" class="text-muted">
+            <strong class="text-gray-dark">
+              {{ $user->name }}
+            </strong>
+          </a>
           <a href="#">Follow</a>
         </div>
         <span class="d-block">@username</span>

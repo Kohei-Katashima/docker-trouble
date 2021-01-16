@@ -79,10 +79,17 @@
     <div class="row">
     @foreach($users as $user)
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+      @if(isset($user->profile_image))
+      <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
+      @elseif(!isset($user->profile_image))
+      <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
+        <title>Placeholder</title>
+        <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+      </svg>
+      @endif
         <h2>{{ $user->name }}</h2>
-        <!-- <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p> -->
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+
+        <p><a class="btn btn-secondary" href="{{route('users.show', $user->id)}}" role="button">プロフィールへ &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
     @endforeach
     
@@ -94,30 +101,22 @@
 
     <hr class="featurette-divider">
 
+      <a href="{{ route('posts.show',$post->id) }}" class="text-muted">
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">新着<span class="text-muted">{{ $post->title }}</span></h2>
+        <h2 class="featurette-heading"><span class="text-muted">{{ $post->title }}</span></h2>
         <p class="lead">{!!(e(Str::limit($post['content'], 200)))!!}</p>
         <small class="text-muted">{{ $post['updated_at']->format('Y/m/d')}}</small>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+      @if(isset($post->image))
+      <img src="{{ asset('storage/image/'.$post->image) }}"class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em"></text></svg>
+        @elseif(!isset($post->image))
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">noimage</text></svg>
+      @endif
       </div>
     </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">新着<span class="text-muted">{{ $post->title }}</span></h2>
-        <p class="lead">{!!(e(Str::limit($post['content'], 200)))!!}</p>
-        <small class="text-muted">{{ $post['updated_at']->format('Y/m/d')}}</small>
-      </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-      </div>
-    </div>
-    
+    </a>
     @endforeach
     <hr class="featurette-divider">
 

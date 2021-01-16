@@ -9,7 +9,6 @@ use App\User;
 use App\http\Requests\PostRequest;
 use App\Http\Controllers\Controller, Session;
 
-
 class PostController extends Controller
 {
     /**
@@ -31,10 +30,12 @@ class PostController extends Controller
 
         $q = \Request::query();
         $posts = Post::latest()->paginate(6);
-        $users = User::latest()->paginate(3);
+        $users = User::inRandomOrder()->paginate(3);
+        $tags = Tag::inRandomOrder()->paginate(6);
 
+        
         if (isset($q['tag_name'])) {
-            $posts = Post::latest()->where('content', 'like', "%{$q['tag_name']}%")->paginate(6);
+            $posts = Post::latest()->where('content', 'like', "%{$q['tag_name']}%")->orwhere('title', 'like', "%{$q['tag_name']}%")->paginate(6);
             $posts->load('user', 'tags');
 
             $tags = Tag::latest()->where('tag_name', 'like', "%{$q['tag_name']}%")->paginate(6);
@@ -44,6 +45,7 @@ class PostController extends Controller
                 'posts' => $posts,
                 'tag_name' => $q['tag_name'],
                 'users' => $users,
+                'tags' => $tags,
 
             ]);
         } else {
@@ -51,6 +53,8 @@ class PostController extends Controller
             return view('posts.index', [
                 'posts' => $posts,
                 'users' => $users,
+                'tags' => $tags,
+
             ]);
         }
 
@@ -61,12 +65,16 @@ class PostController extends Controller
             return view('posts.index', [
                 'posts' => $posts,
                 'users' => $users,
+                'tags' => $tags,
+
             ]);
         }
 
         return view('posts.show', [
-            'post' => $post,
+            'posts' => $posts,
             'users' => $users,
+            'tags' => $tags,
+
         ]);
     }
 
@@ -136,7 +144,7 @@ class PostController extends Controller
 
         $q = \Request::query();
         $post = Post::findOrFail($id);
-        $users = User::latest()->paginate(3);
+        $users = User::inRandomOrder()->paginate(3);
 
         if (isset($q['tag_name'])) {
             $posts = Post::latest()->where('content', 'like', "%{$q['tag_name']}%")->paginate(6);
@@ -175,7 +183,7 @@ class PostController extends Controller
     {
         //
         $post = Post::findOrFail($id);
-        $users = User::latest()->paginate(3);
+        $users = User::inRandomOrder()->paginate(3);
 
         if (is_null($post)) {
             Session::flash('err_msg', 'データがありません。');
@@ -254,10 +262,11 @@ class PostController extends Controller
         return redirect('posts/');
     }
 
-    public function search(Request $request)
+    public function search1(Request $request)
     {
         //
-        $users = User::latest()->paginate(3);
+        $users = User::inRandomOrder()->paginate(3);
+        $tags = Tag::inRandomOrder()->paginate(6);
         $posts = Post::latest()->where('title', 'like', "%{$request->search}%")->orwhere('content', 'like', "%{$request->search}%")->paginate(6);
 
         $search_result = $request->search. 'を含む検索結果'. $posts->total(). '件';
@@ -269,6 +278,7 @@ class PostController extends Controller
             'search_result' => $search_result,
             'search_query' => $request->search,
             'users' => $users,
+            'tags' => $tags,
         ]);
     }
 }

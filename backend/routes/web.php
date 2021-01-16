@@ -23,8 +23,16 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('posts', 'PostController')->middleware('auth');
-Route::get('search', 'PostController@search')->name('posts.search')->middleware('auth');
+Route::get('search1', 'PostController@search1')->name('posts.search')->middleware('auth');
+
+Route::resource('users', 'UserController');
+Route::get('show', 'UserController@show')->name('users.me')->middleware('auth');
+Route::get('search', 'UserController@search')->name('users.search');
 Route::resource('mypage', 'MypageController');
+
+Route::resource('profile','ProfileController');
+// Route::get('search', 'ProfileController@search')->name('profile.search')->middleware('auth');
+
 Route::resource('comments', 'CommentController');
 
 //お問い合わせホーム

@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
         // return view('home');
         $users = User::latest()->paginate(3);
-        $posts = Post::latest()->paginate(2);
+        $posts = Post::latest()->paginate(3);
         $tags = Tag::latest()->paginate(8);
         // $users->load('users');
 
