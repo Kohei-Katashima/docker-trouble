@@ -14,24 +14,24 @@
 
 <div class="my-3 p-3 bg-white rounded shadow-sm">
   <div class="d-flex media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-    <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
-      <title>Placeholder</title>
-      <rect width="100%" height="100%" fill="#007bff" /><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
-    </svg>
+  @if(isset(Auth::user()->profile_image))
+    <img src="{{ asset('storage/profile_image/'.Auth::user()->profile_image) }}" class="bd-placeholder-img mr-2 rounded-circle" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+      @elseif(!isset($Auth::user()->profile_image))
+      <svg class="bd-placeholder-img mr-2 rounded-circle" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+        <title>Placeholder</title>
+        <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">32x32</text>
+      </svg>
+      @endif
     <h3 class="">{{ Auth::user()->name }}</h3>
   </div>
   <div class="media text-muted pt-3">
     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-      <!-- <div class="d-flex justify-content-between align-items-center w-100">
-          <strong class="text-gray-dark"></strong>
-          <a href="#">Follow</a>
-        </div> -->
       <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="form-group">
           <label for="exampleFormControlFile1">プロフィール画像</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1" name="profile_image" value="{{ $user->profile_image}}">
+          <input type="file" class="form-control-file" id="exampleFormControlFile1" name="profile_image" value="{{ asset('storage/profile_image/'.Auth::user()->profile_image) }}">
         </div>
         <div class="form-group">
           <label for="name">ニックネーム</label>
@@ -53,7 +53,6 @@
             <option value="50代">50代</option>
             <option value="60代">60代</option>
           </select>
-          <!-- <input type="text" class="form-control" id="age" name="age" value="{{ old('age') }}"> -->
         </div>
         <div class="form-group">
           <label for="introduction">自己紹介</label>

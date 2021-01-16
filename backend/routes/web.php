@@ -18,21 +18,21 @@ use Illuminate\Support\Facades\Auth;
 //     return view('welcome');
 // });
 
-Auth::routes();
-
+//トップページ
 Route::get('/', 'HomeController@index')->name('home');
 
+Auth::routes();
+
+//投稿一覧
 Route::resource('posts', 'PostController')->middleware('auth');
 Route::get('search1', 'PostController@search1')->name('posts.search')->middleware('auth');
 
+//ユーザー一覧
 Route::resource('users', 'UserController');
 Route::get('show', 'UserController@show')->name('users.me')->middleware('auth');
 Route::get('search', 'UserController@search')->name('users.search');
-Route::resource('mypage', 'MypageController');
 
-Route::resource('profile','ProfileController');
-// Route::get('search', 'ProfileController@search')->name('profile.search')->middleware('auth');
-
+//コメント
 Route::resource('comments', 'CommentController');
 
 //お問い合わせホーム
@@ -42,6 +42,3 @@ Route::get('contact/confirm', 'ContactFormController@confirm')->name('contact.co
 Route::post('contact/confirm', 'ContactFormController@send')->name('contact.send');
 Route::get('contact/thanks', 'ContactFormController@thanks')->name('contact.thanks');
 
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');

@@ -40,7 +40,7 @@ class User extends Authenticatable
     public function posts() {
         return $this->hasMany(\App\Models\Post::class, 'user_id', 'id');
     }
-    public function mypages() {
-        return $this->hasMany(\App\Models\Mypage::class, 'user_id', 'id');
+    public function comments() {
+        return $this->hasMany(\App\Models\Comment::class,'post_id','id');
     }
 }

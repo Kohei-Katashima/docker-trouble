@@ -121,7 +121,7 @@ class UserController extends Controller
         $user->introduction = $request->input('introduction');
 
         if ($request->hasFile('profile_image')) {
-            $filename = $request->file('profile_image')->store('public/pofile_image');
+            $filename = $request->file('profile_image')->store('public/profile_image');
             $user->profile_image = basename($filename);
         }
         $user->save();

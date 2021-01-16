@@ -3,7 +3,7 @@
 @section('content')
 <main role="main" class="container">
   <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-    <img class="mr-3" src="../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">
+    <img class="mr-3" src="{{ asset('image/nayamu_boy2.png') }}" alt="" width="48" height="48">
     <div class="lh-100">
       <h6 class="mb-0 text-white lh-100">ナヤミ掲示板</h6>
       <small>Since 2020
@@ -31,11 +31,11 @@
     @foreach($users as $user)
     <div class="media text-muted pt-3">
       @if(isset($user->profile_image))
-      <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="bd-placeholder-img mr-2 rounded" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+      <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="bd-placeholder-img mr-2 rounded-circle" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
       @elseif(!isset($user->profile_image))
-      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+      <svg class="bd-placeholder-img mr-2 rounded-circle" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
         <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#007bff" /><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
+        <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">32x32</text>
       </svg>
       @endif
       <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">

@@ -83,18 +83,13 @@
             <a class="nav-link" href="{{ route('users.show', Auth::user()->id) }}">マイページ</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">ツイッター</a>
+            <a class="nav-link" href="https://twitter.com/?lang=ja">ツイッター</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">インスタ</a>
+            <a class="nav-link" href="https://www.instagram.com/?hl=ja">インスタ</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">設定</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">編集</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="{{route('contact.index')}}">お問い合わせ</a>
-            </div>
+          <li class="nav-item">
+          <a class="nav-link" href="{{route('contact.index')}}">お問い合わせ</a>
           </li>
           <!-- Authentication Links -->
           @guest
@@ -125,10 +120,6 @@
           </li>
           @endguest
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
       </div>
     </nav>
 
@@ -144,20 +135,11 @@
        
       </nav>
     </div>
-
   </header>
-
-
 
   <main role="main">
     @yield('content')
   </main>
-
-
-
-
-
-
 
   <!-- FOOTER -->
   <footer class="container">
@@ -171,6 +153,5 @@
   </script>
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ asset('js/offcanvas.js') }}"></script>
-
 
 </html>
