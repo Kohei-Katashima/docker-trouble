@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Models\Post;
 use App\Http\Controllers\Controller, Session;
-
-
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -59,16 +58,22 @@ class UserController extends Controller
         $user->load('posts');
         $posts = Post::latest()->paginate(3);
 
+        if(!Auth::check()) {
+            $user = User::where('id', $id)->first();
+            return view('users.show', [
+                'user' => $user, 
+                'posts' => $posts,
+            ]);
+        }
 
-
-        if ($id == \Auth::user()->id) {
+        if ($id == Auth::user()->id) {
             return view('users.me', [
                 'user' => $user, 
                 'posts' => $posts,
             ]);
         }
 
-        if ($id != \Auth::user()->id) {
+        if ($id != Auth::user()->id) {
             $user = User::where('id', $id)->first();
             return view('users.show', [
                 'user' => $user, 

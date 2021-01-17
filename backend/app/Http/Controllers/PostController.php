@@ -8,6 +8,8 @@ use App\Models\Tag;
 use App\User;
 use App\http\Requests\PostRequest;
 use App\Http\Controllers\Controller, Session;
+use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -86,7 +88,11 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('posts.create');
+        if (Auth::check()) {
+            return view('posts.create');
+        } else {
+            return redirect('login/');
+        }
     }
 
     /**
@@ -145,6 +151,8 @@ class PostController extends Controller
         $q = \Request::query();
         $post = Post::findOrFail($id);
         $users = User::inRandomOrder()->paginate(3);
+        $comments = Comment::all();
+
 
         if (isset($q['tag_name'])) {
             $posts = Post::latest()->where('content', 'like', "%{$q['tag_name']}%")->paginate(6);
@@ -170,6 +178,7 @@ class PostController extends Controller
         return view('posts.show', [
             'post' => $post,
             'users' => $users,
+            'comments' => $comments,
         ]);
     }
 

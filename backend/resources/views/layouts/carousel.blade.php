@@ -79,9 +79,7 @@
           <li class="nav-item active">
             <a class="nav-link" href="{{ route('posts.index') }}">ナヤミ掲示板 <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('users.show', Auth::user()->id) }}">マイページ</a>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="https://twitter.com/?lang=ja">ツイッター</a>
           </li>
@@ -108,6 +106,7 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">マイページ</a>
               <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                 {{ __('ログアウト') }}

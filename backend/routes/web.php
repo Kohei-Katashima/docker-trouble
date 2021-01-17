@@ -24,8 +24,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
 
 //投稿一覧
-Route::resource('posts', 'PostController')->middleware('auth');
-Route::get('search1', 'PostController@search1')->name('posts.search')->middleware('auth');
+Route::resource('posts', 'PostController');
+Route::get('show', 'UserController@show')->name('users.me')->middleware('auth');
+Route::get('search1', 'PostController@search1')->name('posts.search');
 
 //ユーザー一覧
 Route::resource('users', 'UserController');
