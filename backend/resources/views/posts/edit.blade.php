@@ -31,7 +31,7 @@
   <div class="d-flex media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
   @if(isset(Auth::user()->profile_image))
     <img src="{{ asset('storage/profile_image/'.Auth::user()->profile_image) }}" class="bd-placeholder-img mr-2 rounded-circle" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
-      @elseif(!isset($Auth::user()->profile_image))
+      @elseif(!isset(Auth::user()->profile_image))
       <svg class="bd-placeholder-img mr-2 rounded-circle" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
         <title>Placeholder</title>
         <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">32x32</text>
