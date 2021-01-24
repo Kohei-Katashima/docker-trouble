@@ -43,7 +43,7 @@
         <div class="carousel-caption text-right">
           <h1>ナミヤ相談室？</h1>
           <p>かつて雑貨屋の浪矢さんが手紙でやりとりしていたあの相談所がSNSに！？</p>
-          <p><a class="btn btn-lg btn-primary" href="#" role="button">ナミヤ雑貨店の奇蹟</a></p>
+          <p><a class="btn btn-lg btn-primary" href="https://promo.kadokawa.co.jp/namiya/" role="button">ナミヤ雑貨店の奇蹟</a></p>
         </div>
       </div>
     </div>

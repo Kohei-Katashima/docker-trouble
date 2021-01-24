@@ -33,7 +33,7 @@
       @endif
 
       @if(isset($user->introduction))
-      <p>{{$user->introduction}}</p>
+      <p>{!! nl2br(e($user['introduction']))!!}</p>
       @elseif(!isset($user->introduction))
       <p>自己紹介：未登録</p>
       @endif
