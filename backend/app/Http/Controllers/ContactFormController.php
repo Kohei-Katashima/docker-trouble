@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ContactForm;
 use App\Http\Requests\ContactFormRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactSendmail;
 
 class ContactFormController extends Controller
 {
@@ -54,10 +56,10 @@ class ContactFormController extends Controller
         }
 
         //入力されたメールアドレスにメールを送信
-        //Mail::to($input['email'])->send(newContactFormmail($input));
+        Mail::to($input['email'])->send(new ContactSendmail($input));
 
         //再送信を防ぐためにトークンを再発行
-        //$request->session()->regenerateToken();
+        $request->session()->regenerateToken();
 
         //DB登録
         ContactForm::create($input);

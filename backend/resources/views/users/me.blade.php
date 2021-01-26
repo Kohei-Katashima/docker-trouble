@@ -7,8 +7,8 @@
     <p class="text-danger">{{ session('err_msg') }}</p>
   @endif
 
-  <div class="row">
-    <div class="col-lg-4">
+  <div class="row justify-content-center">
+    <div class="col-auto">
       @if(isset($user->profile_image))
       <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
       @elseif(!isset($user->profile_image))
