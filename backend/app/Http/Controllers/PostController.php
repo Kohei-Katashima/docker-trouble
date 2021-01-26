@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Tag;
 use App\User;
-use App\http\Requests\PostRequest;
+use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller, Session;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
@@ -21,14 +21,6 @@ class PostController extends Controller
     public function index()
     {
         //
-        // $posts = Post::latest()->paginate(6);
-        // $users = User::latest()->paginate(3);
-
-        // // $posts->load('user');
-        // return view('posts.index', [
-        //     'posts' => $posts,
-        //     'users' => $users,
-        //     ]);
 
         $q = \Request::query();
         $posts = Post::latest()->paginate(6);
