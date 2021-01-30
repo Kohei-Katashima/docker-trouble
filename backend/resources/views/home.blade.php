@@ -11,9 +11,8 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-        <rect width="100%" height="100%" fill="#777" />
-      </svg>
+    <img src="{{ asset('image/coffee-1276784_1920.jpg') }}"  class="bd-placeholder-img" width="100%" height="100%" alt="Responsive image">
+      
       <div class="container">
         <div class="carousel-caption text-left">
           <h1>悩みをなかなか話せない。。。</h1>
@@ -23,9 +22,8 @@
       </div>
     </div>
     <div class="carousel-item">
-      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-        <rect width="100%" height="100%" fill="#777" />
-      </svg>
+    <img src="{{ asset('image/tie-690084_1920.jpg') }}"  class="bd-placeholder-img" width="100%" height="100%" alt="Responsive image">
+      
       <div class="container">
         <div class="carousel-caption">
           <h1>思考の近い友達を探そう！</h1>
@@ -36,9 +34,8 @@
       </div>
     </div>
     <div class="carousel-item">
-      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-        <rect width="100%" height="100%" fill="#777" />
-      </svg>
+    <img src="{{ asset('image/choctaw-bluff-305932_1920.jpg') }}"  class="bd-placeholder-img" width="100%" height="100%" alt="Responsive image">
+
       <div class="container">
         <div class="carousel-caption text-right">
           <h1>ナミヤ相談室？</h1>
