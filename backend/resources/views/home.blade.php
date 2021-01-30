@@ -31,7 +31,7 @@
           <h1>思考の近い友達を探そう！</h1>
           <p>同じような悩み、みんな抱えてるのかも？
           </p>
-          <p><a class="btn btn-lg btn-primary" href="{{ route('register') }}" role="button">登録はこちら</a></p>
+          <p><a class="btn btn-lg btn-primary" href="{{ route('users.index') }}" role="button">ユーザー一覧</a></p>
         </div>
       </div>
     </div>

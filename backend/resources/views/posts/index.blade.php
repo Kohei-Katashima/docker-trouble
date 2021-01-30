@@ -8,15 +8,14 @@
       <h6 class="mb-0 text-white lh-100">ナヤミ掲示板</h6>
       <small>Since 2020
       </small>
-
     </div>
-    <form class="form-inline mt-2 mt-md-0 ml-5" action="{{ route('posts.search') }}" method="GET">
+    <a href="{{ route('posts.create') }}" class="d-block btn btn-outline-primary my-2 my-sm-0 ml-3">投稿</a>
+    <form class="form-inline mt-2 mt-md-0 ml-3 col-md-4 col-6" action="{{ route('posts.search') }}" method="GET">
       @csrf
       <input class="form-control mr-sm-2" type="search" placeholder="朝起きられない" aria-label="Search" name="search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
     </form>
-    <a href="{{ route('posts.create') }}" class="d-block btn btn-outline-primary my-2 my-sm-0 ml-3">投稿する</a>
-  </div>
+    </div>
 
   <div class="my-3 p-3 bg-white rounded shadow-sm">
     @foreach($tags as $tag)

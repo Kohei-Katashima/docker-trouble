@@ -124,7 +124,7 @@
 
     <div class="nav-scroller bg-white shadow-sm">
       <nav class="nav nav-underline">
-        <a class="nav-link active" href="{{ route('posts.index') }}">ナヤミ掲示板</a>
+        <a class="nav-link" href="{{ route('posts.index') }}">ナヤミ掲示板</a>
         <a class="nav-link" href="{{route('users.index')}}">
           ユーザー探し
           <span class="badge badge-pill bg-light align-text-bottom"></span>
@@ -143,7 +143,7 @@
   <!-- FOOTER -->
   <footer class="container">
     <p class="float-right"><a href="{{ url('/') }}">Back to top</a></p>
-    <p>&copy; 2020-2021 kkatashima, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <p>&copy; 2020-2021 kkatashima. Inc.</p>
   </footer>
   </main>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
