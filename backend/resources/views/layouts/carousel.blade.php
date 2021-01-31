@@ -143,7 +143,7 @@
   <!-- FOOTER -->
   <footer class="container">
     <p class="float-right"><a href="{{ url('/') }}">Back to top</a></p>
-    <p>&copy; 2020-2021 kkatashima. Inc.</p>
+    <p>&copy; 2020-2021 kkatashima.com</p>
   </footer>
   </main>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
