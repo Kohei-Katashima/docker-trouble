@@ -76,7 +76,7 @@
 
       <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="{{ route('posts.index') }}">ナヤミ掲示板 <span class="sr-only">(current)</span></a>
           </li>
           

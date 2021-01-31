@@ -11,8 +11,8 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-    <img src="{{ asset('image/coffee-1276784_1920.jpg') }}"  class="bd-placeholder-img" width="100%" height="100%" alt="Responsive image">
-      
+      <img src="{{ asset('image/coffee-1276784_1920.jpg') }}" class="bd-placeholder-img" width="100%" height="100%" alt="Responsive image">
+
       <div class="container">
         <div class="carousel-caption text-left">
           <h1>悩みをなかなか話せない。。。</h1>
@@ -22,8 +22,7 @@
       </div>
     </div>
     <div class="carousel-item">
-    <img src="{{ asset('image/tie-690084_1920.jpg') }}"  class="bd-placeholder-img" width="100%" height="100%" alt="Responsive image">
-      
+      <img src="{{ asset('image/tie-690084_1920.jpg') }}" class="bd-placeholder-img" width="100%" height="100%" alt="Responsive image">
       <div class="container">
         <div class="carousel-caption">
           <h1>思考の近い友達を探そう！</h1>
@@ -34,8 +33,7 @@
       </div>
     </div>
     <div class="carousel-item">
-    <img src="{{ asset('image/choctaw-bluff-305932_1920.jpg') }}"  class="bd-placeholder-img" width="100%" height="100%" alt="Responsive image">
-
+      <img src="{{ asset('image/choctaw-bluff-305932_1920.jpg') }}" class="bd-placeholder-img" width="100%" height="100%" alt="Responsive image">
       <div class="container">
         <div class="carousel-caption text-right">
           <h1>ナミヤ相談室？</h1>
@@ -55,13 +53,7 @@
   </a>
 </div>
 
-<!-- Marketing messaging and featurettes
-  ================================================== -->
-<!-- Wrap the rest of the page in another container to center all the content. -->
-
 <div class="container marketing">
-
-  <!-- Three columns of text below the carousel -->
   <div class="row">
     @foreach($users as $user)
     <div class="col-lg-4">
@@ -76,7 +68,7 @@
       <h2>{{ $user->name }}</h2>
 
       <p><a class="btn btn-secondary" href="{{route('users.show', $user->id)}}" role="button">プロフィールへ &raquo;</a></p>
-    </div><!-- /.col-lg-4 -->
+    </div>
     @endforeach
     <div class="container">
       <p class="float-right d-block text-right mt-3">
@@ -84,12 +76,8 @@
       </p>
     </div>
 
-  </div><!-- /.row -->
-  <!-- {{ $users->links() }} -->
-
+  </div>
   @foreach($posts as $post)
-  <!-- START THE FEATURETTES -->
-
   <hr class="featurette-divider">
 
   <a href="{{ route('posts.show',$post->id) }}" class="text-muted">
@@ -121,7 +109,7 @@
   </div>
   <hr class="featurette-divider">
 
-</div><!-- /.container -->
+</div>
 
 
 @endsection
