@@ -14,4 +14,9 @@ class Tag extends Model
     public function posts() {
         return $this->belongsToMany(\App\Models\Post::class);
     }
+
+    public function getHashtagAttribute(): string
+    {
+        return '#' . $this->tag_name;
+    }
 }

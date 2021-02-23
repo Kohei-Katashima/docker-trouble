@@ -29,8 +29,8 @@
 
   <div class="my-3 p-3 bg-white rounded shadow-sm">
     <div class="d-flex media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-    @if(isset(Auth::user()->profile_image))
-    <img src="{{ asset('storage/profile_image/'.Auth::user()->profile_image) }}" class="bd-placeholder-img mr-2 rounded-circle" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+      @if(isset(Auth::user()->profile_image))
+      <img src="{{ asset('storage/profile_image/'.Auth::user()->profile_image) }}" class="bd-placeholder-img mr-2 rounded-circle" width="32" height="32" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
       @elseif(!isset(Auth::user()->profile_image))
       <svg class="bd-placeholder-img mr-2 rounded-circle" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
         <title>Placeholder</title>
@@ -56,6 +56,10 @@
             <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" value="{{ old('image') }}">
           </div>
           <div class="form-group">
+            <post-tags-input  :initial-tags='@json($tagNames ?? [])' :autocomplete-items='@json($allTagNames ?? [])'>
+            </post-tags-input>
+          </div>
+          <!-- <div class="form-group">
             <div class="row">
               <div class="col">
                 <div class="form-group">
@@ -64,13 +68,14 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <input type="hidden" name="user_id" value="{{ Auth::id() }}">
           <button type="submit" class="btn btn-primary">投稿する</button>
         </form>
         <span class="d-block">@username</span>
       </div>
     </div>
+
 
     <small class="d-block text-right mt-3">
       <a href="{{ route('posts.index') }}">戻る</a>

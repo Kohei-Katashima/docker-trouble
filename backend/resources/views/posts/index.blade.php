@@ -18,9 +18,19 @@
     </div>
 
   <div class="my-3 p-3 bg-white rounded shadow-sm">
-    @foreach($tags as $tag)
-    <a href="{{ route('posts.index', ['tag_name' => $tag->tag_name]) }}" class="badge badge-light">{{ $tag->tag_name}}</a>
-    @endforeach
+  @foreach($tags as $tag)
+    @if($loop->first)
+      <div class="card-body pt-0 pb-2 pl-1">
+        <div class="card-text line-height">
+    @endif
+          <a href="{{ route('posts.index', ['tag_name' => $tag->tag_name]) }}" class="badge badge-light ml-2">
+          {{ $tag->hashtag }}
+          </a>
+    @if($loop->last)
+        </div>
+      </div>
+    @endif
+  @endforeach
   </div>
 
   @if (session('err_msg'))

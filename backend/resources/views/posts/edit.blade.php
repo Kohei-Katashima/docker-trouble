@@ -61,11 +61,15 @@
             <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" value="{{ asset('storage/image/'.$post->image) }}">
           </div>
           <div class="form-group">
+            <post-tags-input  :initial-tags='@json($tagNames ?? [])' :autocomplete-items='@json($allTagNames ?? [])'>
+            </post-tags-input>
+          </div>
+          <!-- <div class="form-group">
             <div class="row">
               <div class="col">
                 <label for="tag">タグ</label>
                 <input type="text" class="form-control" id="tag" name="tag_name" value="#{{ $post->tag_name}}">
-              </div>
+              </div> -->
               <!-- <div class="col">
                 <label for="tag1">タグ</label>
                 <input type="text" class="form-control" id="tag1" name="tag_name" value="#{{ old('tag') }}">

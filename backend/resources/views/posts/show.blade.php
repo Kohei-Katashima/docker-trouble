@@ -70,14 +70,22 @@
       <strong class="d-block text-gray-dark">{{ $post->updated_at}}</strong>
     </small>
     <div class="card-body text-right pt-0 pb-2 pl-3">
-    <div class="card-text">
-      <post-like  :initial-is-liked-by='@json($post->isLikedBy(Auth::user()))' :initial-count-likes='@json($post->count_likes)'  :authorized='@json(Auth::check())'
-        endpoint="{{ route('posts.like', ['post' => $post]) }}">
-      </post-like>
+      <div class="card-text">
+        <post-like :initial-is-liked-by='@json($post->isLikedBy(Auth::user()))' :initial-count-likes='@json($post->count_likes)' :authorized='@json(Auth::check())' endpoint="{{ route('posts.like', ['post' => $post]) }}">
+        </post-like>
+      </div>
     </div>
-  </div>
+
     @foreach($post->tags as $tag)
-    <a href="{{ route('posts.index', ['tag_name' => $tag->tag_name]) }}" class="badge badge-light">{{ $tag->tag_name}}</a>
+    @if($loop->first)
+    <div class="card-body pt-0 pb-4 pl-1 ">
+      <div class="card-text line-height ">
+        @endif
+        <a href="{{ route('posts.index', ['tag_name' => $tag->tag_name]) }}" class="badge badge-light ml-2">{{ $tag->hashtag }}</a>
+        @if($loop->last)
+      </div>
+    </div>
+    @endif
     @endforeach
   </div>
 
@@ -102,7 +110,7 @@
           <strong class="text-gray-dark">{{ Auth::user()->name }}</strong>
         </div>
       </div>
-    @endauth
+      @endauth
 
     </div>
     @if($errors->any())
@@ -129,7 +137,7 @@
 
     </form>
     @endauth
-      <h6 class="border-bottom border-gray pb-2 mb-0">コメント一覧<span class="badge badge-light ml-2">{{count($post->comments)}}</span></h6>
+    <h6 class="border-bottom border-gray pb-2 mb-0">コメント一覧<span class="badge badge-light ml-2">{{count($post->comments)}}</span></h6>
     @foreach($post->comments as $comment)
     <div class="media text-muted pt-3">
       @if(isset($comment->user->profile_image))
@@ -153,9 +161,9 @@
             <input type="button" class="d-block text-righ" value="削除する" data-id="{{ $comment->id }}" onclick="deletePost(this);return false;"></input>
           </form>
           @elseif (Auth::user()->id !== $comment->user_id)
-            <a href="#">Follow</a>
+          <a href="#">Follow</a>
           @endif
-        @endauth
+          @endauth
         </div>
         <div class="d-flex justify-content-between align-items-center w-100">
           <strong class="d-block text-gray-dark">{{ $comment->updated_at}}</strong>

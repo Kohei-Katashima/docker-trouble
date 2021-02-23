@@ -80,11 +80,18 @@ class PostController extends Controller
     public function create()
     {
         //
+        $allTagNames = Tag::all()->map(function ($tag) {
+            return ['text' => $tag->tag_name];
+        });
         if (Auth::check()) {
             return view('posts.create');
         } else {
             return redirect('login/');
         }
+        return view('posts.create', [
+            'allTagNames' => $allTagNames,
+        ]);
+
     }
 
     /**
@@ -97,6 +104,7 @@ class PostController extends Controller
     {
         //
         $post = new Post;
+        $post->fill($request->all())->save();
         $post->user_id = $request->input('user_id');
         $post->title = $request->input('title');
         $post->content = $request->input('content');
@@ -105,6 +113,12 @@ class PostController extends Controller
             $filename = $request->file('image')->store('public/image');
             $post->image = basename($filename);
         }
+
+        $request->tags->each(function ($tagName) use ($post) {
+            $tag = Tag::firstOrCreate(['tag_name' => $tagName]);
+            $post->tags()->attach($tag);
+        });
+
 
         preg_match_all('/#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tag_name, $match);
 
@@ -186,6 +200,13 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $users = User::inRandomOrder()->paginate(3);
 
+        $tagNames = $post->tags->map(function ($tag) {
+            return ['text' => $tag->tag_name];
+        });
+        $allTagNames = Tag::all()->map(function ($tag) {
+            return ['text' => $tag->tag_name];
+        });
+
         if (is_null($post)) {
             Session::flash('err_msg', 'データがありません。');
             return redirect(route('posts/'));
@@ -194,6 +215,8 @@ class PostController extends Controller
         return view('posts.edit', [
             'post' => $post,
             'users' => $users,
+            'tagNames' => $tagNames,
+            'allTagNames' => $allTagNames,
         ]);
     }
 
@@ -240,6 +263,12 @@ class PostController extends Controller
 
         $post->fill($request->all())->save();
         $post->tags()->sync($tags_id);
+
+        $post->tags()->detach();
+        $request->tags->each(function ($tagName) use ($post) {
+            $tag = Tag::firstOrCreate(['tag_name' => $tagName]);
+            $post->tags()->attach($tag);
+        });
 
 
         Session::flash('err_msg', '更新されました');
