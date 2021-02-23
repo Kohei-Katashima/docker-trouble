@@ -26,6 +26,12 @@
 
   <!-- Bootstrap core CSS -->
   <!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
 
   <style>
     .bd-placeholder-img {
@@ -79,7 +85,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('posts.index') }}">ナヤミ掲示板 <span class="sr-only">(current)</span></a>
           </li>
-          
+
           <li class="nav-item">
             <a class="nav-link" href="https://twitter.com/?lang=ja">ツイッター</a>
           </li>
@@ -87,7 +93,7 @@
             <a class="nav-link" href="https://www.instagram.com/?hl=ja">インスタ</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="{{route('contact.index')}}">お問い合わせ</a>
+            <a class="nav-link" href="{{route('contact.index')}}">お問い合わせ</a>
           </li>
           <!-- Authentication Links -->
           @guest
@@ -106,7 +112,7 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">マイページ</a>
+              <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">マイページ</a>
               <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                 {{ __('ログアウト') }}
@@ -129,15 +135,17 @@
           ユーザー探し
           <span class="badge badge-pill bg-light align-text-bottom"></span>
         </a>
-        
+
         <a class="nav-link" href="#"></a>
-       
+
       </nav>
     </div>
   </header>
 
   <main role="main">
-    @yield('content')
+    <div id="app">
+      @yield('content')
+    </div>
   </main>
 
   <!-- FOOTER -->
@@ -152,5 +160,14 @@
   </script>
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ asset('js/offcanvas.js') }}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
+</body>
+
+</html>
 
 </html>

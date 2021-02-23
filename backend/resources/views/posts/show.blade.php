@@ -69,6 +69,12 @@
     <small class="d-block text-right mt-3">
       <strong class="d-block text-gray-dark">{{ $post->updated_at}}</strong>
     </small>
+    <div class="card-body text-right pt-0 pb-2 pl-3">
+    <div class="card-text">
+      <post-like>
+      </post-like>
+    </div>
+  </div>
     @foreach($post->tags as $tag)
     <a href="{{ route('posts.index', ['tag_name' => $tag->tag_name]) }}" class="badge badge-light">{{ $tag->tag_name}}</a>
     @endforeach
@@ -195,6 +201,7 @@
       <a href="{{route('users.index')}}">ユーザー一覧へ</a>
     </small>
   </div>
+  <script src="{{ mix('js/app.js') }}"></script>
   <script>
     function deletePost(e) {
       'use strict';
