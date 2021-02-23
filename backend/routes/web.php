@@ -32,6 +32,8 @@ Route::prefix('posts')->name('posts.')->group(function () {
   Route::delete('/{post}/like', 'PostController@unlike')->name('unlike')->middleware('auth');
 });
 
+Route::get('/tags/{tag_name}', 'TagController@show')->name('tags.show');
+
 //ユーザー一覧
 Route::resource('users', 'UserController');
 Route::get('show', 'UserController@show')->name('users.me')->middleware('auth');

@@ -64,24 +64,6 @@
             <post-tags-input  :initial-tags='@json($tagNames ?? [])' :autocomplete-items='@json($allTagNames ?? [])'>
             </post-tags-input>
           </div>
-          <!-- <div class="form-group">
-            <div class="row">
-              <div class="col">
-                <label for="tag">タグ</label>
-                <input type="text" class="form-control" id="tag" name="tag_name" value="#{{ $post->tag_name}}">
-              </div> -->
-              <!-- <div class="col">
-                <label for="tag1">タグ</label>
-                <input type="text" class="form-control" id="tag1" name="tag_name" value="#{{ old('tag') }}">
-              </div>
-              <div class="col">
-                <label for="tag2">タグ</label>
-                <input type="text" class="form-control" id="tag2" name="tag_name" value="#{{ old('tag') }}">
-              </div>
-              <div class="col">
-                <label for="tag3">タグ</label>
-                <input type="text" class="form-control" id="tag3" name="tag_name" value="#{{ old('tag') }}">
-              </div> -->
             </div>
           </div>
           <input type="hidden" name="user_id" value="{{ Auth::id() }}">

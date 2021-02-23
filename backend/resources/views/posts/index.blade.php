@@ -23,7 +23,7 @@
       <div class="card-body pt-0 pb-2 pl-1">
         <div class="card-text line-height">
     @endif
-          <a href="{{ route('posts.index', ['tag_name' => $tag->tag_name]) }}" class="badge badge-light ml-2">
+          <a href="{{ route('tags.show', ['tag_name' => $tag->tag_name]) }}" class="badge badge-light ml-2">
           {{ $tag->hashtag }}
           </a>
     @if($loop->last)
