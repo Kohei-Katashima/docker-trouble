@@ -50,11 +50,11 @@
           <a href="{{route('users.show',$post->user_id)}}" class="text-muted">
             <strong class="text-gray-dark">{{ $post->user->name}}</strong>
           </a>
-          @auth
+          <!-- @auth
           @if (Auth::user()->id <> $post->user_id)
             <a href="#">Follow</a>
             @endif
-            @endauth
+            @endauth -->
         </div>
       </div>
     </div>
@@ -83,7 +83,7 @@
         @endif
         <a href="{{ route('tags.show', ['tag_name' => $tag->tag_name]) }}" class="badge badge-light ml-2">
           {{ $tag->hashtag }}
-          </a>
+        </a>
         @if($loop->last)
       </div>
     </div>
@@ -163,7 +163,7 @@
             <input type="button" class="d-block text-righ" value="削除する" data-id="{{ $comment->id }}" onclick="deletePost(this);return false;"></input>
           </form>
           @elseif (Auth::user()->id !== $comment->user_id)
-          <a href="#">Follow</a>
+          <!-- <a href="#">Follow</a> -->
           @endif
           @endauth
         </div>
@@ -201,7 +201,10 @@
               {{ $user->name }}
             </strong>
           </a>
-          <a href="#">Follow</a>
+          @if( Auth::id() !== $user->id )
+          <follow-button class="ml-auto float-right" :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))' :authorized='@json(Auth::check())' endpoint="{{ route('users.follow', ['name' => $user->name]) }}">
+          </follow-button>
+          @endif
         </div>
         <span class="d-block">@username</span>
       </div>

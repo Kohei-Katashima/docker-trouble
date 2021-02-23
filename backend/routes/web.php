@@ -38,6 +38,13 @@ Route::get('/tags/{tag_name}', 'TagController@show')->name('tags.show');
 Route::resource('users', 'UserController');
 Route::get('show', 'UserController@show')->name('users.me')->middleware('auth');
 Route::get('search', 'UserController@search')->name('users.search');
+Route::prefix('users')->name('users.')->group(function () {
+  Route::get('/{name}', 'UserController@show')->name('show');
+  Route::middleware('auth')->group(function () {
+      Route::put('/{name}/follow', 'UserController@follow')->name('follow');
+      Route::delete('/{name}/follow', 'UserController@unfollow')->name('unfollow');
+  });
+});
 
 //コメント
 Route::resource('comments', 'CommentController');

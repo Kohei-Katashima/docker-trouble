@@ -15,22 +15,22 @@
       <input class="form-control mr-sm-2" type="search" placeholder="朝起きられない" aria-label="Search" name="search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
     </form>
-    </div>
+  </div>
 
   <div class="my-3 p-3 bg-white rounded shadow-sm">
-  @foreach($tags as $tag)
+    @foreach($tags as $tag)
     @if($loop->first)
-      <div class="card-body pt-0 pb-2 pl-1">
-        <div class="card-text line-height">
-    @endif
-          <a href="{{ route('tags.show', ['tag_name' => $tag->tag_name]) }}" class="badge badge-light ml-2">
+    <div class="card-body pt-0 pb-2 pl-1">
+      <div class="card-text line-height">
+        @endif
+        <a href="{{ route('tags.show', ['tag_name' => $tag->tag_name]) }}" class="badge badge-light ml-2">
           {{ $tag->hashtag }}
-          </a>
-    @if($loop->last)
-        </div>
+        </a>
+        @if($loop->last)
       </div>
+    </div>
     @endif
-  @endforeach
+    @endforeach
   </div>
 
   @if (session('err_msg'))
@@ -100,7 +100,10 @@
               {{ $user->name }}
             </strong>
           </a>
-          <a href="#">Follow</a>
+          @if( Auth::id() !== $user->id )
+          <follow-button class="ml-auto float-right" :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))' :authorized='@json(Auth::check())' endpoint="{{ route('users.follow', ['name' => $user->name]) }}">
+          </follow-button>
+          @endif
         </div>
         <span class="d-block">@username</span>
       </div>
