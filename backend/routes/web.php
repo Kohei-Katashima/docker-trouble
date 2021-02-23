@@ -27,6 +27,10 @@ Auth::routes();
 Route::resource('posts', 'PostController');
 Route::get('show', 'UserController@show')->name('users.me')->middleware('auth');
 Route::get('search1', 'PostController@search1')->name('posts.search');
+Route::prefix('posts')->name('posts.')->group(function () {
+  Route::put('/{post}/like', 'PostController@like')->name('like')->middleware('auth');
+  Route::delete('/{post}/like', 'PostController@unlike')->name('unlike')->middleware('auth');
+});
 
 //ユーザー一覧
 Route::resource('users', 'UserController');

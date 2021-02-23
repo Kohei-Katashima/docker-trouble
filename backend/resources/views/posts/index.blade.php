@@ -9,7 +9,7 @@
       <small>Since 2020
       </small>
     </div>
-    <a href="{{ route('posts.create') }}" class="d-block btn btn-outline-primary my-2 my-sm-0 ml-3">投稿</a>
+    <a href="{{ route('posts.create') }}" class="d-block btn btn-primary my-2 my-sm-0 ml-3">投稿</a>
     <form class="form-inline mt-2 mt-md-0 ml-3 col-md-4 col-6" action="{{ route('posts.search') }}" method="GET">
       @csrf
       <input class="form-control mr-sm-2" type="search" placeholder="朝起きられない" aria-label="Search" name="search">

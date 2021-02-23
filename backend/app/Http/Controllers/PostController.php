@@ -27,7 +27,7 @@ class PostController extends Controller
         $users = User::inRandomOrder()->paginate(3);
         $tags = Tag::inRandomOrder()->paginate(6);
 
-        
+
         if (isset($q['tag_name'])) {
             $posts = Post::latest()->where('content', 'like', "%{$q['tag_name']}%")->orwhere('title', 'like', "%{$q['tag_name']}%")->paginate(6);
             $posts->load('user', 'tags');
@@ -270,7 +270,7 @@ class PostController extends Controller
         $tags = Tag::inRandomOrder()->paginate(6);
         $posts = Post::latest()->where('title', 'like', "%{$request->search}%")->orwhere('content', 'like', "%{$request->search}%")->paginate(6);
 
-        $search_result = $request->search. 'を含む検索結果'. $posts->total(). '件';
+        $search_result = $request->search . 'を含む検索結果' . $posts->total() . '件';
 
         // $posts->load('user', 'tags');
 
@@ -281,5 +281,26 @@ class PostController extends Controller
             'users' => $users,
             'tags' => $tags,
         ]);
+    }
+
+    public function like(Request $request, Post $post)
+    {
+        $post->likes()->detach($request->user()->id);
+        $post->likes()->attach($request->user()->id);
+
+        return [
+            'id' => $post->id,
+            'countLikes' => $post->count_likes,
+        ];
+    }
+
+    public function unlike(Request $request, Post $post)
+    {
+        $post->likes()->detach($request->user()->id);
+
+        return [
+            'id' => $post->id,
+            'countLikes' => $post->count_likes,
+        ];
     }
 }

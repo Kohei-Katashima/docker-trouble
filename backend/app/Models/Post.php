@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Post extends Model
 {
@@ -19,5 +20,22 @@ class Post extends Model
     }
     public function tags() {
         return $this->belongsToMany(\App\Models\Tag::class);
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(\App\User::class, 'likes')->withTimestamps();
+    }
+
+    public function isLikedBy(?User $user): bool
+    {
+        return $user
+            ? (bool)$this->likes->where('id', $user->id)->count()
+            : false;
+    }
+
+    public function getCountLikesAttribute(): int
+    {
+        return $this->likes->count();
     }
 }

@@ -15,7 +15,7 @@
       <input class="form-control mr-sm-2" type="search" placeholder="朝起きられない" aria-label="Search" name="search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
     </form>
-    <a href="{{ route('posts.create') }}" class="d-block btn btn-outline-primary my-2 my-sm-0 ml-3">投稿する</a>
+    <a href="{{ route('posts.create') }}" class="d-block btn btn-primary my-2 my-sm-0 ml-3">投稿する</a>
   </div>
 
   @if (session('err_msg'))
@@ -71,7 +71,8 @@
     </small>
     <div class="card-body text-right pt-0 pb-2 pl-3">
     <div class="card-text">
-      <post-like>
+      <post-like  :initial-is-liked-by='@json($post->isLikedBy(Auth::user()))' :initial-count-likes='@json($post->count_likes)'  :authorized='@json(Auth::check())'
+        endpoint="{{ route('posts.like', ['post' => $post]) }}">
       </post-like>
     </div>
   </div>
@@ -128,7 +129,7 @@
 
     </form>
     @endauth
-      <h6 class="border-bottom border-gray pb-2 mb-0">コメント一覧<span class="badge badge-light">{{count($post->comments)}}</span></h6>
+      <h6 class="border-bottom border-gray pb-2 mb-0">コメント一覧<span class="badge badge-light ml-2">{{count($post->comments)}}</span></h6>
     @foreach($post->comments as $comment)
     <div class="media text-muted pt-3">
       @if(isset($comment->user->profile_image))
