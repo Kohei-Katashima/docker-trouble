@@ -40,6 +40,9 @@ Route::get('show', 'UserController@show')->name('users.me')->middleware('auth');
 Route::get('search', 'UserController@search')->name('users.search');
 Route::prefix('users')->name('users.')->group(function () {
   Route::get('/{name}', 'UserController@show')->name('show');
+  Route::get('/{name}/likes', 'UserController@likes')->name('likes');
+  Route::get('/{name}/followings', 'UserController@followings')->name('followings');
+    Route::get('/{name}/followers', 'UserController@followers')->name('followers');
   Route::middleware('auth')->group(function () {
       Route::put('/{name}/follow', 'UserController@follow')->name('follow');
       Route::delete('/{name}/follow', 'UserController@unfollow')->name('unfollow');

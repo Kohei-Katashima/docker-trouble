@@ -215,7 +215,7 @@
       <a href="{{route('users.index')}}">ユーザー一覧へ</a>
     </small>
   </div>
-  <script src="{{ mix('js/app.js') }}"></script>
+  
   <script>
     function deletePost(e) {
       'use strict';

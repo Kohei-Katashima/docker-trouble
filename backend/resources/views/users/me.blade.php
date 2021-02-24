@@ -48,10 +48,10 @@
 
   <div class="card-body">
     <div class="card-text">
-      <a href="" class="text-muted">
+      <a href="{{ route('users.followings', ['name' => $user->name]) }}" class="text-muted">
         {{ $user->count_followings }} フォロー
       </a>
-      <a href="" class="text-muted">
+      <a href="{{ route('users.followers', ['name' => $user->name]) }}" class="text-muted">
         {{ $user->count_followers }} フォロワー
       </a>
       @if( Auth::id() !== $user->id )
@@ -63,13 +63,26 @@
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">{{ $user->name }}の投稿</h6>
 
-      @if(!isset($users->posts))
+      <ul class="nav nav-tabs nav-justified mt-3">
+        <li class="nav-item">
+          <a class="nav-link text-muted active" href="{{ route('users.show', ['name' => $user->name]) }}">
+            記事
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-muted" href="{{ route('users.likes', ['name' => $user->name]) }}">
+            いいね
+          </a>
+        </li>
+      </ul>
+
+      @foreach($user->posts as $post)
+      @if(!isset($post->id))
       <div class="d-flex justify-content-between align-items-center w-100">
         <h6 class="d-block text-gray-dark pt-3">まだ投稿がありません。</h6>
       </div>
       @endif
 
-      @foreach($user->posts as $post)
       <div class="media text-muted pt-3">
         @if(isset($post->image))
         <img src="{{ asset('storage/image/'.$post->image) }}" class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
