@@ -43,7 +43,10 @@
           <a href="{{ route('users.show',$user->id) }}" class="text-muted">
             <strong class="text-gray-dark">{{ $user->name }}</strong>
           </a>
-          <a href="#">Follow</a>
+          @if( Auth::id() !== $user->id )
+          <follow-button class="ml-auto float-right" :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))' :authorized='@json(Auth::check())' endpoint="{{ route('users.follow', ['name' => $user->name]) }}">
+          </follow-button>
+          @endif
         </div>
         <span class="d-block">@username</span>
       </div>
