@@ -26,14 +26,54 @@
     <div class="d-flex justify-content-between  align-items-center w-100 border-bottom border-gray">
       <h3 class="pb-2 mb-0">{{ $post->title }}</h3>
       @auth
-      @if (Auth::user()->id === $post->user_id)
-      <span class="d-block text-right"><a href="{{ route('posts.edit',$post->id) }}">編集する</a></span>
-      <form method="POST" action="{{ route('posts.destroy', $post->id) }}" id="delete_{{ $post->id }}">
-        @csrf
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="button" class="d-block text-righ" value="削除する" data-id="{{ $post->id }}" onclick="deletePost(this);return false;"></input>
-      </form>
-      @endif
+      @if( Auth::id() === $post->user_id )
+          <!-- dropdown -->
+          <div class="ml-auto card-text">
+            <div class="dropdown">
+              <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-link text-muted m-0 p-2">
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="{{ route("posts.edit", ['post' => $post]) }}">
+                  <i class="fas fa-pen mr-1"></i>記事を更新する
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-delete-{{ $post->id }}">
+                  <i class="fas fa-trash-alt mr-1"></i>記事を削除する
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- dropdown -->
+  
+          <!-- modal -->
+          <div id="modal-delete-{{ $post->id }}" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}">
+                  @csrf
+                  @method('DELETE')
+                  <div class="modal-body">
+                    {{ $post->title }}を削除します。よろしいですか？
+                  </div>
+                  <div class="modal-footer justify-content-between">
+                    <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
+                    <button type="submit" class="btn btn-danger">削除する</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- modal -->
+        @endif
+      
       @endauth
     </div>
     <div class="media text-muted pt-3">
@@ -215,7 +255,7 @@
       <a href="{{route('users.index')}}">ユーザー一覧へ</a>
     </small>
   </div>
-  
+
   <script>
     function deletePost(e) {
       'use strict';

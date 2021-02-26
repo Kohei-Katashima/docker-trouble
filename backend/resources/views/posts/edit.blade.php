@@ -70,12 +70,12 @@
           <button type="submit" class="btn btn-primary">更新する</button>
         </form>
         <span class="d-block">@username</span>
-      </div>
-    </div>
-
     <small class="d-block text-right mt-3">
       <a href="{{ route('posts.show', $post->id) }}">戻る</a>
     </small>
+      </div>
+    </div>
+
   </div>
 </main>
 
