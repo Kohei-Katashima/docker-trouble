@@ -2,20 +2,9 @@
 
 @section('content')
 <main role="main" class="container">
-  <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-    <img class="mr-3" src="{{ asset('image/nayamu_boy2.png') }}" alt="" width="48" height="48">
-    <div class="lh-100">
-      <h6 class="mb-0 text-white lh-100">ナヤミ掲示板</h6>
-      <small>Since 2020
-      </small>
-
-    </div>
-    <form class="form-inline mt-2 mt-md-0 ml-5">
-      @csrf
-      <input class="form-control mr-sm-2" type="text" placeholder="朝起きられない" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
-    </form>
-  </div>
+  <!-- top -->
+  @include('posts.top')
+  <!-- top -->
 
   @if($errors->any())
   <div class="alert alert-danger">
@@ -56,7 +45,7 @@
             <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" value="{{ old('image') }}">
           </div>
           <div class="form-group">
-            <post-tags-input  :initial-tags='@json($tagNames ?? [])' :autocomplete-items='@json($allTagNames ?? [])'>
+            <post-tags-input :initial-tags='@json($tagNames ?? [])' :autocomplete-items='@json($allTagNames ?? [])'>
             </post-tags-input>
           </div>
           <input type="hidden" name="user_id" value="{{ Auth::id() }}">

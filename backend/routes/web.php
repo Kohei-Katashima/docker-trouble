@@ -36,7 +36,6 @@ Route::get('/tags/{tag_name}', 'TagController@show')->name('tags.show');
 
 //ユーザー一覧
 Route::resource('users', 'UserController');
-Route::get('show', 'UserController@show')->name('users.me')->middleware('auth');
 Route::get('search', 'UserController@search')->name('users.search');
 Route::prefix('users')->name('users.')->group(function () {
   Route::get('/{name}', 'UserController@show')->name('show');

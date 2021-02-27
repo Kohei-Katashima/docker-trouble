@@ -273,7 +273,7 @@ class PostController extends Controller
 
         Session::flash('err_msg', '更新されました');
 
-        return redirect('posts/' . $post->id);
+        return redirect('posts/'. $post->id);
     }
 
     /**
