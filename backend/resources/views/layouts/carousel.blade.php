@@ -15,7 +15,7 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
+
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
