@@ -54,7 +54,6 @@
         </form>
       </div>
     </div>
-      <span class="d-block">@username</span>
     <small class="d-block text-right mt-3">
       <a href="{{ route('posts.show', $post->id) }}">戻る</a>
     </small>

@@ -48,7 +48,6 @@
           </follow-button>
           @endif
         </div>
-        <span class="d-block">@username</span>
       </div>
     </div>
     @endforeach

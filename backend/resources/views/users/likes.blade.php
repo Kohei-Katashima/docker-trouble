@@ -13,15 +13,13 @@
     <h6 class="border-bottom border-gray pb-2 mb-0">{{ $user->name }} さんの投稿</h6>
 
     <ul class="nav nav-tabs nav-justified mt-3">
-    <li class="nav-item">
-        <a class="nav-link text-muted"
-           href="{{ route('users.show', ['name' => $user->name]) }}">
+      <li class="nav-item">
+        <a class="nav-link text-muted" href="{{ route('users.show', ['name' => $user->name]) }}">
           記事
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-muted active"
-           href="{{ route('users.likes', ['name' => $user->name]) }}">
+        <a class="nav-link text-muted active" href="{{ route('users.likes', ['name' => $user->name]) }}">
           いいね
         </a>
       </li>

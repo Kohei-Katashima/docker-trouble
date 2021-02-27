@@ -17,6 +17,7 @@
       <a href="{{ route('users.show',['name' => $post->user->name]) }}" class="text-muted">{{ $post->user->name }}</a>
     </div>
     <div class="card-body text-right pt-0 pb-2 pl-3">
+      <i class="fas fa-comment-alt"><span class="text-gray-dark ml-2">{{count($post->comments)}}</span></i>
       <div class="card-text">
         <post-like :initial-is-liked-by='@json($post->isLikedBy(Auth::user()))' :initial-count-likes='@json($post->count_likes)' :authorized='@json(Auth::check())' endpoint="{{ route('posts.like', ['post' => $post]) }}">
         </post-like>
