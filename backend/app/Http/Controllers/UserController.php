@@ -51,35 +51,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+        public function show(string $name)
     {
-        //
-        $user = User::findOrFail($id);
-        $user->load('posts');
-        $posts = Post::latest()->paginate(3);
+        $user = User::where('name', $name)->first();
 
-        if(!Auth::check()) {
-            $user = User::where('id', $id)->first();
-            return view('users.show', [
-                'user' => $user, 
-                'posts' => $posts,
-            ]);
-        }
-
-        if ($id == Auth::user()->id) {
-            return view('users.me', [
-                'user' => $user, 
-                'posts' => $posts,
-            ]);
-        }
-
-        if ($id != Auth::user()->id) {
-            $user = User::where('id', $id)->first();
-            return view('users.show', [
-                'user' => $user, 
-                'posts' => $posts,
-            ]);
-        }
+        return view('users.show', [
+            'user' => $user,
+        ]);
     }
 
     public function likes(string $name)
@@ -228,5 +206,4 @@ class UserController extends Controller
 
         return ['name' => $name];
     }
-    //==========こ
 }

@@ -67,7 +67,7 @@
       @endif
       <h2>{{ $user->name }}</h2>
 
-      <p><a class="btn btn-secondary" href="{{route('users.show', $user->id)}}" role="button">プロフィールへ &raquo;</a></p>
+      <p><a class="btn btn-secondary" href="{{route('users.show', ['name' => $user->name])}}" role="button">プロフィールへ &raquo;</a></p>
     </div>
     @endforeach
     <div class="container">

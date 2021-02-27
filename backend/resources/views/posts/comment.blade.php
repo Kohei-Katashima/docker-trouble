@@ -55,7 +55,7 @@
     @endif
     <div class="media-body pb-3 mb-0 small lh-125 ">
       <div class="d-flex justify-content-between align-items-center w-100">
-        <a href="{{route('users.show',$comment->user_id)}}" class="text-muted">
+        <a href="{{ route('users.show',['name' => $comment->user->name]) }}" class="text-muted">
           <strong class="text-gray-dark">{{ $comment->user->name }}</strong>
         </a>
         @auth

@@ -15,7 +15,7 @@
     <ul class="nav nav-tabs nav-justified mt-3">
     <li class="nav-item">
         <a class="nav-link text-muted"
-           href="{{ route('users.me', ['name' => $user->name]) }}">
+           href="{{ route('users.show', ['name' => $user->name]) }}">
           記事
         </a>
       </li>
@@ -27,8 +27,8 @@
       </li>
     </ul>
 
-    @foreach($user->posts as $post)
-    @include('users.card')
+    @foreach($posts as $post)
+    @include('posts.post')
     @endforeach
   </div>
 
