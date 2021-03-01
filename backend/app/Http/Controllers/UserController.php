@@ -51,7 +51,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-        public function show(string $name)
+    public function show(string $name)
     {
         $user = User::where('name', $name)->first();
 
@@ -83,7 +83,7 @@ class UserController extends Controller
             'followings' => $followings,
         ]);
     }
-    
+
     public function followers(string $name)
     {
         $user = User::where('name', $name)->first();
@@ -102,20 +102,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(string $name)
     {
         //
-        $user = User::findOrFail($id);
 
-        if (is_null($user)) {
-            Session::flash('err_msg', 'データがありません。');
-            return redirect(route('users/'));
-        }
+        $user = User::where('name', $name)->first();
 
         return view('users.edit', [
             'user' => $user,
         ]);
-        
     }
 
     /**
@@ -125,13 +120,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, string $name)
     {
         //
-        if (is_null($user)) {
-            Session::flash('err_msg', 'データがありません。');
-            return redirect(route('users/'));
-        }
+        $user = User::where('name', $name)->first();
 
         $user->id = $request->input('id');
         $user->name = $request->input('name');
@@ -148,7 +140,7 @@ class UserController extends Controller
 
         Session::flash('err_msg', '更新されました');
 
-        return redirect('users/' . $user->id);
+        return redirect('users/' . Auth::user()->name);
     }
 
     /**
@@ -167,7 +159,7 @@ class UserController extends Controller
         //
         $users = User::latest()->where('name', 'like', "%{$request->search}%")->paginate(10);
 
-        $search_result = $request->search. 'を含む検索結果'. $users->total(). '件';
+        $search_result = $request->search . 'を含む検索結果' . $users->total() . '件';
 
         // $users->load('user', 'tags');
 
@@ -182,8 +174,7 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
 
-        if ($user->id === $request->user()->id)
-        {
+        if ($user->id === $request->user()->id) {
             return abort('404', 'Cannot follow yourself.');
         }
 
@@ -192,13 +183,12 @@ class UserController extends Controller
 
         return ['name' => $name];
     }
-    
+
     public function unfollow(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();
 
-        if ($user->id === $request->user()->id)
-        {
+        if ($user->id === $request->user()->id) {
             return abort('404', 'Cannot follow yourself.');
         }
 
