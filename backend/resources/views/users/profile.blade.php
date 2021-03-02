@@ -30,7 +30,7 @@
     @endif
 
     @if( Auth::id() === $user->id )
-    <p><a class="btn btn-secondary float-right" href="{{ route('users.edit', Auth::user()->name)}}" role="button">編集する &raquo;</a></p>
+    <p><a class="btn btn-secondary float-right" href="{{ route('users.edit', Auth::user()->id)}}" role="button">編集する &raquo;</a></p>
     @endif
 
   </div><!-- /.col-lg-4 -->

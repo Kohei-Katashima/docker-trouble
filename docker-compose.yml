@@ -15,22 +15,22 @@ services:
     working_dir: /work
 
   db:
-    build: ./infra/mysql
-    volumes:
-      - db-store:/var/lib/mysql
+    image: mariadb
+    restart: always
     ports:
-      - 13306:3306
-  pma:
-    image: phpmyadmin/phpmyadmin:5.0.2
+      - 3307:3306
+    volumes:
+      - "./mysql:/var/lib/mysql"
+      - "./initdb.d:/docker-entrypoint-initdb.d"
     environment:
-      - PMA_HOST=db
-      - PMA_USER=root
-      - PMA_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=pwd
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pwd
+ 
+  adminer:
+    image: adminer
+    restart: always
     ports:
-      - 8080:80
-    volumes:
-      - pma-session-store:/sessions
-
-volumes:
-  pma-session-store:
-  db-store:
+      - 8080:8080
+ 
