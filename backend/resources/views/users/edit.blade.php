@@ -26,7 +26,7 @@
   </div>
   <div class="media text-muted pt-3">
     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-      <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('users.update', ['name' => $user->name]) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="form-group">
@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
           <label for="name">ニックネーム</label>
-          <textarea class="form-control" id="name" rows="1" name="name">{{ $user->name }}</textarea>
+          <textarea class="form-control" id="name" rows="1" name="name">{{ Auth::user()->name }}</textarea>
         </div>
         <div class="form-group">
           <label for="gender">性別</label><br>
@@ -61,7 +61,6 @@
         <input type="hidden" name="id" value="{{ Auth::id() }}">
         <button type="submit" class="btn btn-primary">更新する</button>
       </form>
-      <span class="d-block">@username</span>
     </div>
   </div>
 

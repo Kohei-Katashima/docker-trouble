@@ -8,3 +8,5 @@
 <br>
 ■お問い合わせ内容<br>
 {!! nl2br($contact) !!}<br>
+
+ナミヤ相談室({{ url(config('app.url')) }})

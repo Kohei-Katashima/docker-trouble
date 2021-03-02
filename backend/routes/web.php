@@ -43,8 +43,9 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}/followers', 'UserController@followers')->name('followers');
   Route::middleware('auth')->group(function () {
       Route::put('/{name}/follow', 'UserController@follow')->name('follow');
-      Route::delete('/{name}/follow', 'UserController@unfollow')->name('unfollow');
-  });
+    });
+    Route::put('/{name}/edit', 'UserController@edit')->name('edit');
+    Route::put('/{name}/update', 'UserController@update')->name('update');
 });
 
 //コメント
@@ -56,4 +57,3 @@ Route::post('contact/index', 'ContactFormController@post')->name('contact.post')
 Route::get('contact/confirm', 'ContactFormController@confirm')->name('contact.confirm');
 Route::post('contact/confirm', 'ContactFormController@send')->name('contact.send');
 Route::get('contact/thanks', 'ContactFormController@thanks')->name('contact.thanks');
-

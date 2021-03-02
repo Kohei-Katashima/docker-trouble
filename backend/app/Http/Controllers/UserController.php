@@ -102,15 +102,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(string $name)
     {
         //
-        $user = User::findOrFail($id);
-
-        if (is_null($user)) {
-            Session::flash('err_msg', 'データがありません。');
-            return redirect(route('users/'));
-        }
+        
+        $user = User::where('name', $name)->first();
 
         return view('users.edit', [
             'user' => $user,
@@ -125,13 +121,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, string $name)
     {
         //
-        if (is_null($user)) {
-            Session::flash('err_msg', 'データがありません。');
-            return redirect(route('users/'));
-        }
+        $user = User::where('name', $name)->first();
 
         $user->id = $request->input('id');
         $user->name = $request->input('name');
@@ -148,7 +141,7 @@ class UserController extends Controller
 
         Session::flash('err_msg', '更新されました');
 
-        return redirect('users/' . $user->id);
+        return redirect('users/' .['name' => $name]);
     }
 
     /**
