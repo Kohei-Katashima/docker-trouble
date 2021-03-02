@@ -1,9 +1,9 @@
 version: 2.1
 jobs:
   build:
+    working_directory: ~/backend
     docker:
       - image: circleci/php:7.3-node-browsers
-    working_directory: backend
     steps:
       - checkout
       - run: sudo composer self-update --1
