@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - run: sudo composer self-update --1
-      - run: composer install -n --working-dir=./backend
-      - run: npm ci --working-dir=./backend
+      - run: composer install -n 
+      - run: npm ci 
       - run: npm run dev
       - run:
           name: php test
