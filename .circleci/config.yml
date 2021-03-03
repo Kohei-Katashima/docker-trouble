@@ -7,7 +7,13 @@ jobs:
     steps:
       - checkout
       - run: sudo composer self-update --1
-      - run: composer install -n --prefer-dist
+      - restore_cache:
+          key: composer-v1-{{ checksum "composer.lock" }} 
+      - run: composer install -n --prefer-dist --working-dir=./backend
+      - save_cache:
+          key: composer-v1-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
       - run: npm ci 
       - run: npm run dev
       - run:
