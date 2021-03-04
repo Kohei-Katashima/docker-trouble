@@ -3,6 +3,21 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.3-node-browsers
+      - image: circleci/mysql:8.0.4
+        environment:
+          APP_ENV: testing
+          DB_CONNECTION: mysql
+          DB_HOST: db
+          DB_PORT: 3306
+          DB_DATABASE: laravel_namiya 
+          DB_USERNAME: phper
+          DB_PASSWORD: secret
+        services:
+           - mysql
+    database:
+      override:
+        - "php artisan migrate"
+        - "php artisan db:seed"
     steps:
       - checkout
       - run: sudo composer self-update --1
