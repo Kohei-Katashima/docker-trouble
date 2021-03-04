@@ -12,8 +12,6 @@ jobs:
           DB_DATABASE: laravel_namiya 
           DB_USERNAME: phper
           DB_PASSWORD: secret
-        services:
-           - mysql
     database:
       override:
         - "php artisan migrate"
