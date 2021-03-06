@@ -15,17 +15,11 @@ jobs:
       DB_DATABASE: laravel_namiya 
       DB_USERNAME: phper
       DB_PASSWORD: secret 
-
     steps:
       - checkout
       - run: sudo composer self-update --1
       - run: composer install -n --prefer-dist
-      - run:
-        name: npm ci
-        command: |
-          if [ ! -d node_modules ]; then
-            npm ci
-          fi 
+      - run: npm ci
       - run: npm run dev
       - run:
           name: get ready for postgres
