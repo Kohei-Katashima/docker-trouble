@@ -6,7 +6,7 @@ jobs:
     working_directory: ~/backend
     steps:
       - checkout
-      - run: sudo composer self-update --1
+      - run: sudo composer 
       - run: composer install -n --prefer-dist
       - run: npm ci
       - run: npm run dev
