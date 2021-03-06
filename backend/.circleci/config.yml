@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.3-node-browsers
-    working_directory: ~/docker-trouble/backend
     steps:
       - checkout
       - run: sudo composer self-update --1
