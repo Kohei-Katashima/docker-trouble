@@ -65,7 +65,7 @@
   </div>
 
   <small class="d-block text-right mt-3">
-    <a href="{{ route('users.show',$user->id) }}">戻る</a>
+    <a href="{{ route('users.show',['name' => $user->name]) }}">戻る</a>
   </small>
 </div>
 </main>

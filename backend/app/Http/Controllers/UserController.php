@@ -141,7 +141,7 @@ class UserController extends Controller
 
         Session::flash('err_msg', '更新されました');
 
-        return redirect('users/' .['name' => $name]);
+        return redirect('users/' .$name);
     }
 
     /**
