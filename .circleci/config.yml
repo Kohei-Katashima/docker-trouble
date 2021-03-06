@@ -3,12 +3,37 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.4-fpm-buster
+        environment:
+          - APP_DEBUG: true
+          - APP_ENV: testing
+          - DB_CONNECTION: mysql
+          - DB_DATABASE: laravel_namiya 
+          - DB_USERNAME: phper
+
+      - image: circleci/mysql:8.0.4
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: true
+          - MYSQL_DATABASE: laravel_namiya 
     steps:
       - checkout
-      - run: sudo composer self-update --1
+ 
+      - run: sudo apt update
+      - run: sudo docker-php-ext-install pdo_mysql
+ 
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+ 
       - run: composer install -n --prefer-dist
-      - run: npm ci
-      - run: npm run dev
-      - run:
-          name: php test
-          command: vendor/bin/phpunit
+ 
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+ 
+      - run: echo "APP_KEY=" > .env.testing
+      - run: php artisan key:generate
+      - run: php artisan migrate
+ 
+      - run: ./vendor/bin/phpunit
