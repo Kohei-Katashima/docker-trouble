@@ -29,7 +29,9 @@
     <p>自己紹介：未登録</p>
     @endif
 
-    @if( Auth::id() === $user->id )
+    @if (Auth::id() == 1)
+    <p class="text-danger">※ゲストユーザーは、プロフィールを編集できません。</p>
+    @elseif( Auth::id() === $user->id )
     <p><a class="btn btn-secondary float-right" href="{{ route('users.edit', Auth::user()->name)}}" role="button">編集する &raquo;</a></p>
     @endif
 

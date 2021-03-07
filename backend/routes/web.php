@@ -23,6 +23,9 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
+// ゲストユーザーログイン
+Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
+
 //投稿一覧
 Route::resource('posts', 'PostController');
 Route::get('search1', 'PostController@search1')->name('posts.search');

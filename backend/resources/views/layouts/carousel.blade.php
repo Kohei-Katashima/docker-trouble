@@ -98,6 +98,9 @@
           <!-- Authentication Links -->
           @guest
           <li class="nav-item">
+            <a class="nav-link" href="{{ route('login.guest') }}">ゲストログイン</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
           </li>
           @if (Route::has('register'))
