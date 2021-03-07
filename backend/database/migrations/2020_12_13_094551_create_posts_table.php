@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
 
             $table->string('title')->nullable();
             $table->string('content')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
