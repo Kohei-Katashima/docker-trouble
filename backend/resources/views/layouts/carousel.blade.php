@@ -7,6 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v4.1.1">
+  <link rel="shortcut icon" href="{{ asset('/favicon.png') }}">
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
