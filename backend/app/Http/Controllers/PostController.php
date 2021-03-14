@@ -24,6 +24,7 @@ class PostController extends Controller
 
         $q = \Request::query();
         $posts = Post::latest()->paginate(6);
+        $posts->load(['user', 'likes', 'tags', 'comments']);
         $users = User::inRandomOrder()->paginate(3);
         $tags = Tag::inRandomOrder()->paginate(6);
 
@@ -156,6 +157,7 @@ class PostController extends Controller
 
         $q = \Request::query();
         $post = Post::findOrFail($id);
+        $post->load(['user', 'likes', 'tags', 'comments']);
         $users = User::inRandomOrder()->paginate(3);
         $comments = Comment::all();
 
