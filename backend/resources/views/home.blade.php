@@ -8,8 +8,17 @@
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
+    <!-- <li data-target="#myCarousel" data-slide-to="3"></li> -->
   </ol>
   <div class="carousel-inner">
+    <!-- <div class="carousel-item active">
+      <img src="{{ asset('image/banner_image_1.png') }}" class="bd-placeholder-img" width="100%" height="100%" alt="Responsive image">
+      <div class="container">
+        <div class="carousel-caption text-left">
+          <p><a class="btn btn-lg btn-primary float-right" href="{{ route('posts.index') }}" role="button">ナヤミ掲示板へ</a></p>
+        </div>
+      </div>
+    </div> -->
     <div class="carousel-item active">
       <img src="{{ asset('image/coffee-1276784_1920.jpg') }}" class="bd-placeholder-img" width="100%" height="100%" alt="Responsive image">
 

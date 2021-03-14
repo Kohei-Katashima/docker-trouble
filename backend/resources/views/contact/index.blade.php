@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<img src="{{ asset('image/banner_image_1.png') }}" class="bd-placeholder-img pb-5" width="100%" height="100%" alt="Responsive image">
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-10">
