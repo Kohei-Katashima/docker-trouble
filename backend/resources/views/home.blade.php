@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -21,7 +21,6 @@
     </div> -->
     <div class="carousel-item active">
       <img src="{{ asset('image/coffee-1276784_1920.jpg') }}" class="bd-placeholder-img" width="100%" height="100%" alt="Responsive image">
-
       <div class="container">
         <div class="carousel-caption text-left">
           <h1>悩みをなかなか話せない。。。</h1>

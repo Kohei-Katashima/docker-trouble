@@ -13,7 +13,7 @@
     <form class="form-inline mt-2 mt-md-0 ml-5" action="{{ route('users.search') }}" method="GET">
       @csrf
       <input class="form-control mr-sm-2" type="search" placeholder="田中太郎" aria-label="Search" name="search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+    <button class="btn btn-outline-success " type="submit"><i class="fas fa-search"></i></button></button>
     </form>
   </div>
 

@@ -8,8 +8,8 @@
   </div>
   <form class="form-inline mt-2 mt-md-0 ml-2" action="{{ route('posts.search') }}" method="GET">
     @csrf
-    <input class="form-control mr-sm-2" type="search" placeholder="朝起きられない" aria-label="Search" name="search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+    <input class="form-control" type="search" placeholder="朝起きられない" aria-label="Search" name="search">
+    <button class="btn btn-outline-success " type="submit"><i class="fas fa-search"></i></button>
   </form>
   <a href="{{ route('posts.create') }}" class="d-inline btn btn-primary my-2 my-sm-0 ml-3">投稿する</a>
 </div>
