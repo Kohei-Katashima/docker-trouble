@@ -17,7 +17,6 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}"></script>
-
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -26,7 +25,6 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
   <!-- Bootstrap core CSS -->
-  <!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Bootstrap core CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +77,6 @@
       <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
         <span class="navbar-toggler-icon"></span>
       </button>
-
 
       <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
@@ -157,14 +154,10 @@
     <p class="float-right"><a href="{{ url('/') }}">Back to top</a></p>
     <p>&copy; 2020-2021 kkatashima.com</p>
   </footer>
-  </main>
+
+  <script src="{{ mix('js/app.js') }}" defer></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script>
-    window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')
-  </script>
-  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ asset('js/offcanvas.js') }}"></script>
-  <script src="{{ mix('js/app.js') }}"></script>
   <!-- JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
@@ -173,6 +166,7 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 </body>
 
 </html>

@@ -11,6 +11,5 @@ $factory->define(Post::class, function (Faker $faker) {
         'user_id' => factory(App\User::class),
         'title' => $faker->word,
         'content' => $faker->realText, 
-        'image' => $faker->fileExtension,
     ];
 });

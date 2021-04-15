@@ -7,7 +7,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\User;
 use App\Http\Requests\PostRequest;
-use App\Http\Controllers\Controller, Session;
+use Illuminate\Support\Facades\Session;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
